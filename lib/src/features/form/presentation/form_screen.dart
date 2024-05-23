@@ -49,6 +49,13 @@ class _FormScreenState extends State<FormScreen> {
   }
 
   @override
+  void dispose() {
+    passwordController.dispose();
+    repeatPasswordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
