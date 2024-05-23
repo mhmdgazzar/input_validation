@@ -58,12 +58,21 @@ class FormScreen extends StatelessWidget {
   }
 
   String? validateEmail(String? input) {
-    // TODO: implementiere hier die Logik, die im Task Sheet beschrieben ist
-    return null;
+    if (validateEmailFn(input!) || input.isEmpty) {
+      return null;
+    } else {
+      return "Please enter a valid email address.";
+    }
   }
 
   String? validatePw(String? input) {
     // TODO: implementiere hier die Logik, die im Task Sheet beschrieben ist
     return null;
   }
+}
+
+bool validateEmailFn(String email) {
+  final emailRegex = RegExp(
+      r"[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.[a-zA-Z]{2,}");
+  return emailRegex.hasMatch(email);
 }
