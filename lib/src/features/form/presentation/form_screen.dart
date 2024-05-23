@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 
 class FormScreen extends StatelessWidget {
   // Attribute
-  // (keine)
+  final passwordController = TextEditingController();
+  final repeatPasswordController = TextEditingController();
 
   // Konstruktor
-  const FormScreen({super.key});
+  FormScreen({super.key});
 
   // Methoden
   @override
@@ -34,6 +35,7 @@ class FormScreen extends StatelessWidget {
                   ),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: validatePw,
+                  controller: passwordController,
                 ),
                 const SizedBox(height: 8),
                 TextFormField(
@@ -42,7 +44,8 @@ class FormScreen extends StatelessWidget {
                     label: Text("Passwort wiederholnen"),
                   ),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: validatePw,
+                  validator: validatePwRepeat,
+                  controller: repeatPasswordController,
                 ),
                 const SizedBox(height: 32),
                 FilledButton(
@@ -73,6 +76,16 @@ class FormScreen extends StatelessWidget {
     } else {
       return null;
     }
+  }
+}
+
+String? validatePwRepeat(String? input) {
+  if (input == null || input.isEmpty) {
+    return "Bitte bestätigen Sie Ihr Passwort";
+  } else if (input == "") {
+    return "Passwörter stimmen nicht überein";
+  } else {
+    return null;
   }
 }
 
