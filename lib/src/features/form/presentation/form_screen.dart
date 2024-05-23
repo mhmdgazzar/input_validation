@@ -11,33 +11,35 @@ class FormScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(32.0),
-        child: Form(
-          child: Column(children: [
-            TextFormField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                label: Text("Email"),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(32.0),
+          child: Form(
+            child: Column(children: [
+              TextFormField(
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  label: Text("Email"),
+                ),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: validateEmail,
               ),
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              validator: validateEmail,
-            ),
-            const SizedBox(height: 8),
-            TextFormField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                label: Text("Passwort"),
+              const SizedBox(height: 8),
+              TextFormField(
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  label: Text("Passwort"),
+                ),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: validatePw,
               ),
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              validator: validatePw,
-            ),
-            const SizedBox(height: 32),
-            FilledButton(
-              onPressed: () {},
-              child: const Text("Login"),
-            ),
-          ]),
+              const SizedBox(height: 32),
+              FilledButton(
+                onPressed: () {},
+                child: const Text("Login"),
+              ),
+            ]),
+          ),
         ),
       ),
     );
