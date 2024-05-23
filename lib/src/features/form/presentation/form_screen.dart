@@ -66,8 +66,13 @@ class FormScreen extends StatelessWidget {
   }
 
   String? validatePw(String? input) {
-    // TODO: implementiere hier die Logik, die im Task Sheet beschrieben ist
-    return null;
+    if (input == null || input.isEmpty) {
+      return "Password cannot be empty";
+    } else if (input.length != 8) {
+      return "Password must be 8 characters long";
+    } else {
+      return null;
+    }
   }
 }
 
