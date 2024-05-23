@@ -61,15 +61,15 @@ class FormScreen extends StatelessWidget {
     if (validateEmailFn(input!) || input.isEmpty) {
       return null;
     } else {
-      return "Please enter a valid email address.";
+      return "Bitte eine valide E-Mail-Adresse eingeben";
     }
   }
 
   String? validatePw(String? input) {
     if (input == null || input.isEmpty) {
-      return "Password cannot be empty";
-    } else if (input.length != 8) {
-      return "Password must be 8 characters long";
+      return "Passwort kann nicht leer sein";
+    } else if (input.length < 8) {
+      return "Passwort muss minimum 8 Zeichen lang sein";
     } else {
       return null;
     }
