@@ -33,6 +33,15 @@ class FormScreen extends StatelessWidget {
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: validatePw,
               ),
+              const SizedBox(height: 8),
+              TextFormField(
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  label: Text("Passwort wiederholnen"),
+                ),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: validatePw,
+              ),
               const SizedBox(height: 32),
               FilledButton(
                 onPressed: () {},
