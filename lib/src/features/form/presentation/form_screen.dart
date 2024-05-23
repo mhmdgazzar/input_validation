@@ -1,14 +1,53 @@
 import 'package:flutter/material.dart';
 
-class FormScreen extends StatelessWidget {
+class FormScreen extends StatefulWidget {
+  const FormScreen({super.key});
+
+  @override
+  State<FormScreen> createState() => _FormScreenState();
+}
+
+class _FormScreenState extends State<FormScreen> {
   // Attribute
   final passwordController = TextEditingController();
+
   final repeatPasswordController = TextEditingController();
 
-  // Konstruktor
-  FormScreen({super.key});
-
   // Methoden
+  String? validateEmail(String? input) {
+    if (validateEmailFn(input!) || input.isEmpty) {
+      return null;
+    } else {
+      return "Bitte eine valide E-Mail-Adresse eingeben";
+    }
+  }
+
+  String? validatePw(String? input) {
+    if (input == null || input.isEmpty) {
+      return "Passwort kann nicht leer sein";
+    } else if (input.length < 8) {
+      return "Passwort muss minimum 8 Zeichen lang sein";
+    } else {
+      return null;
+    }
+  }
+
+  String? validatePwRepeat(String? input) {
+    if (input == null || input.isEmpty) {
+      return "Bitte bestätigen Sie Ihr Passwort";
+    } else if (input != passwordController.text) {
+      return "Passwörter stimmen nicht überein";
+    } else {
+      return null;
+    }
+  }
+
+  bool validateEmailFn(String email) {
+    final emailRegex = RegExp(
+        r"[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.[a-zA-Z]{2,}");
+    return emailRegex.hasMatch(email);
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -59,38 +98,4 @@ class FormScreen extends StatelessWidget {
       ),
     );
   }
-
-  String? validateEmail(String? input) {
-    if (validateEmailFn(input!) || input.isEmpty) {
-      return null;
-    } else {
-      return "Bitte eine valide E-Mail-Adresse eingeben";
-    }
-  }
-
-  String? validatePw(String? input) {
-    if (input == null || input.isEmpty) {
-      return "Passwort kann nicht leer sein";
-    } else if (input.length < 8) {
-      return "Passwort muss minimum 8 Zeichen lang sein";
-    } else {
-      return null;
-    }
-  }
-}
-
-String? validatePwRepeat(String? input) {
-  if (input == null || input.isEmpty) {
-    return "Bitte bestätigen Sie Ihr Passwort";
-  } else if (input == "") {
-    return "Passwörter stimmen nicht überein";
-  } else {
-    return null;
-  }
-}
-
-bool validateEmailFn(String email) {
-  final emailRegex = RegExp(
-      r"[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.[a-zA-Z]{2,}");
-  return emailRegex.hasMatch(email);
 }
