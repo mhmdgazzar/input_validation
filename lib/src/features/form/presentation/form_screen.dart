@@ -10,8 +10,9 @@ class FormScreen extends StatefulWidget {
 class _FormScreenState extends State<FormScreen> {
   // Attribute
   final passwordController = TextEditingController();
-
   final repeatPasswordController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool clickable = false;
 
   // Methoden
   String? validateEmail(String? input) {
@@ -64,6 +65,12 @@ class _FormScreenState extends State<FormScreen> {
           child: Padding(
             padding: const EdgeInsets.all(32.0),
             child: Form(
+              key: _formKey,
+              onChanged: () {
+                setState(() {
+                  clickable = _formKey.currentState?.validate() ?? false;
+                });
+              },
               child: Column(children: [
                 TextFormField(
                   decoration: const InputDecoration(
@@ -75,6 +82,7 @@ class _FormScreenState extends State<FormScreen> {
                 ),
                 const SizedBox(height: 8),
                 TextFormField(
+                  obscureText: true,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     label: Text("Passwort"),
@@ -85,6 +93,7 @@ class _FormScreenState extends State<FormScreen> {
                 ),
                 const SizedBox(height: 8),
                 TextFormField(
+                  obscureText: true,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     label: Text("Passwort wiederholnen"),
@@ -95,7 +104,7 @@ class _FormScreenState extends State<FormScreen> {
                 ),
                 const SizedBox(height: 32),
                 FilledButton(
-                  onPressed: () {},
+                  onPressed: clickable ? () {} : null,
                   child: const Text("Login"),
                 ),
               ]),
