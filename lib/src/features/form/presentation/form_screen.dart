@@ -76,6 +76,8 @@ class _FormScreenState extends State<FormScreen> {
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     label: Text("Email"),
+                    suffixText: '*',
+                    suffixStyle: TextStyle(color: Colors.red),
                   ),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: validateEmail,
